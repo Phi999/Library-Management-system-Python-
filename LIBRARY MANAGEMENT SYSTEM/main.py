@@ -1,6 +1,9 @@
 import csv
 import os
 import sys
+import tkinter as tk
+from tkinter import *
+from PIL import ImageTk, Image
 import pandas as pd
 
 from datetime import timedelta, date
@@ -11,8 +14,7 @@ from datetime import date
 today = date.today()
 
 
-def restart():
-    os.execl(sys.executable, sys.executable, *sys.argv)
+
 
 
 while True:
@@ -25,6 +27,20 @@ while True:
     print("4 - See all books")
     print("5 - See borrowed books at the moment")
     a = input("\n")
+    if a == '4':
+        t = 0
+
+        with open("books_in_rn.csv", 'r') as f:
+
+            csv_reader = csv.reader(f)
+            for line in csv_reader:
+                if line[7] != "":
+                    print("book " + line[0]  + " genre " + line[2] + " id " + line[6] + "  status :  " + line[7] )
+                else:
+                    print("book " + line[0] + " genre " + line[2] + " id " + line[6] + "  status :  " + " not taken")
+
+                t+=1
+        input("Press enter to continue")
     if a == '5':
         t = 0
 
